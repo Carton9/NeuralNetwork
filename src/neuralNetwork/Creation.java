@@ -17,6 +17,11 @@ public class Creation {
 		Random random=new Random();
 		c=new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
 	}
+	public Creation(int input,int hiddenX,int hiddenY,int output){
+		reproduction=new NerousNetworkFactory(input,hiddenX,hiddenY,output);
+		brain=reproduction.init();
+		isAlive=true;
+	}
 	public Creation(NerousNetworkFactory reproduction,double size,Point location,Color c){
 		brain=reproduction.init();
 		Random random=new Random();
@@ -27,6 +32,18 @@ public class Creation {
 	}
 	public Color getColor(){
 		return c;
+	}
+	public void tarining(ArrayList<ArrayList<Double>> inputdata,ArrayList<Integer>targetValue){
+		if(inputdata.size()!=targetValue.size())return;
+		for(int i=0;i<inputdata.size();i++){
+			brain.action(inputdata.get(0));
+			inputdata.remove(0);
+			ArrayList<Double> output=brain.output();
+
+			double loss=1-output.get(targetValue.get(i));
+			System.out.println(loss);
+			brain.updataLoss(loss);
+		}
 	}
 	public void action(ArrayList<Creation> list,ArrayList<Plant> listP){
 		Creation target=see(list);
@@ -46,11 +63,7 @@ public class Creation {
 			}
 		}
 		/*
-		 *  1
-		 * 2 3
-		 *  4
-		 */
-		switch(place){
+		 switch(place){
 			case 1:
 			{
 				move(0,-1,100);
@@ -72,18 +85,9 @@ public class Creation {
 				break;
 			}
 		}
+		 */
 		
-		for(int i=0;i<list.size();i++){
-			//System.out.println(list.get(i).appear.getCenterX()+"   "+list.get(i).appear.getCenterY());
-			Creation newTarget=list.get(i);
-			if(newTarget==this)continue;
-			eat(newTarget);
-		}
-		for(int i=0;i<listP.size();i++){
-			//System.out.println(list.get(i).appear.getCenterX()+"   "+list.get(i).appear.getCenterY());
-			Plant newTarget=listP.get(i);
-			eatP(newTarget);
-		}
+		
 	}
 	public Plant seeP(ArrayList<Plant> list){
 		double disdent=Double.MAX_VALUE;

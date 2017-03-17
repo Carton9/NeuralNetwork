@@ -60,4 +60,13 @@ public class NervousNetwork {
 	public void addOutputSignal(ArrayList<Synapse> list){
 		outputSignal=list;
 	}
+	public void updataLoss(double loss){
+		//ArrayList<ArrayList<Neuron>> hideLevel;
+		for(int i=0;i<hideLevel.size();i++){
+			ArrayList<Neuron> subList=hideLevel.get(i);
+			for(int j=0;j<subList.size();j++){
+				subList.get(j).feedback(loss);
+			}
+		}
+	}
 }

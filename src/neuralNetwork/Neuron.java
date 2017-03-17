@@ -6,11 +6,13 @@ public class Neuron {
 	ArrayList<Synapse> inputSignal;
 	ArrayList<Double> inputWeight;
 	ArrayList<Synapse> outputSignal;
+	boolean active;
 	int bias;
 	public Neuron(){
 		inputSignal=new ArrayList<Synapse>();
 		outputSignal=new ArrayList<Synapse>();
 		inputWeight=new ArrayList<Double>();
+		active=false;
 		Random biasGenerator=new Random();
 		int buff=0;
 		while(buff==0){
@@ -19,6 +21,7 @@ public class Neuron {
 		bias=buff;
 	}
 	public Neuron(ArrayList<Synapse> input){
+		active=false;
 		inputSignal=input;
 		outputSignal=new ArrayList<Synapse>();
 		Random biasGenerator=new Random();
@@ -51,6 +54,7 @@ public class Neuron {
 		}
 		buff+=bias;
 		buff = excitation(buff);
+		if(buff>0.5)active=true;
 		for(int i=0;i<outputSignal.size();i++){
 			outputSignal.get(i).input(buff);
 		}
@@ -59,5 +63,21 @@ public class Neuron {
 		double buff=Math.pow(Math.E, (input*-1))+1;
 		return 1/buff;
 	}
-
+	public void feedback(double loss){
+		if(active){
+			ArrayList<Double> newInputWeight=new ArrayList<Double>();
+			for(int i=0;i<inputWeight.size();i++){
+				newInputWeight.add(inputWeight.get(i)+loss);
+			}
+			inputWeight=newInputWeight;
+		}
+		else{
+			ArrayList<Double> newInputWeight=new ArrayList<Double>();
+			for(int i=0;i<inputWeight.size();i++){
+				newInputWeight.add(inputWeight.get(i)-loss);
+			}
+			inputWeight=newInputWeight;
+		}
+		active=false;
+	}
 }
