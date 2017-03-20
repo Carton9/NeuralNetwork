@@ -1,7 +1,7 @@
 package neuralNetwork;
 import java.util.ArrayList;
 
-public class NervousNetwork {
+public class NeuralNetwork {
 	boolean isAlive;
 	int inputN=0,hideN=0,outputN=0;
 	ArrayList<Neuron> inputLevel;
@@ -9,7 +9,7 @@ public class NervousNetwork {
 	ArrayList<Neuron> outputLevel;
 	ArrayList<Synapse> inputSignal;
 	ArrayList<Synapse> outputSignal;
-	public NervousNetwork(){
+	public NeuralNetwork(){
 		inputLevel=new ArrayList<Neuron>();
 		hideLevel=new ArrayList<ArrayList<Neuron>>();
 		outputLevel=new ArrayList<Neuron>();
