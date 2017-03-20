@@ -5,7 +5,7 @@ public class MainTest {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-		Creation test1=new Creation(2,2,2,2);
+		Creation test1=new Creation(2,200,200,2);
 		//AdvFrame frame=new AdvFrame(1000,2000,"test2");
 		//frame.setVisible(true);
 		//LinearGraph panel=new LinearGraph();
