@@ -5,12 +5,12 @@ import java.awt.*;
 public class Creation {
 	public boolean isAlive=false;
 	public Ellipse2D appear;
-	NervousNetwork brain;
-	NerousNetworkFactory reproduction;
+	NeuralNetwork brain;
+	NeuralNetworkFactory reproduction;
 	public double livePoint=0;
 	Color c;
 	public Creation(double size,Point location){
-		reproduction=new NerousNetworkFactory(3,10,10,4);
+		reproduction=new NeuralNetworkFactory(3,10,10,4);
 		brain=reproduction.init();
 		isAlive=true;
 		appear=new Ellipse2D.Double(location.getX()+size,location.getY()+size,size,size);
@@ -18,11 +18,11 @@ public class Creation {
 		c=new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
 	}
 	public Creation(int input,int hiddenX,int hiddenY,int output){
-		reproduction=new NerousNetworkFactory(input,hiddenX,hiddenY,output);
+		reproduction=new NeuralNetworkFactory(input,hiddenX,hiddenY,output);
 		brain=reproduction.init();
 		isAlive=true;
 	}
-	public Creation(NerousNetworkFactory reproduction,double size,Point location,Color c){
+	public Creation(NeuralNetworkFactory reproduction,double size,Point location,Color c){
 		brain=reproduction.init();
 		Random random=new Random();
 		this.reproduction=reproduction;
