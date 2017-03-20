@@ -33,17 +33,20 @@ public class Creation {
 	public Color getColor(){
 		return c;
 	}
-	public void tarining(ArrayList<ArrayList<Double>> inputdata,ArrayList<Integer>targetValue){
-		if(inputdata.size()!=targetValue.size())return;
+	public ArrayList<Double> tarining(ArrayList<ArrayList<Double>> inputdata,ArrayList<Integer>targetValue){
+		 ArrayList<Double> lossList=new ArrayList<Double>();
+		if(inputdata.size()!=targetValue.size())return null;
 		for(int i=0;i<inputdata.size();i++){
 			brain.action(inputdata.get(0));
 			inputdata.remove(0);
 			ArrayList<Double> output=brain.output();
-
-			double loss=1-output.get(targetValue.get(i));
-			System.out.println(loss);
+			System.out.println(output);
+			double loss=output.get(targetValue.get(i));
+			lossList.add(loss);
+			//System.out.println(loss);
 			brain.updataLoss(loss);
 		}
+		return lossList;
 	}
 	public void action(ArrayList<Creation> list,ArrayList<Plant> listP){
 		Creation target=see(list);

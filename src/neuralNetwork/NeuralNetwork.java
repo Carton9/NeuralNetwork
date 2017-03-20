@@ -49,9 +49,14 @@ public class NeuralNetwork {
 	public ArrayList<Double> output(){
 		ArrayList<Double> output=new ArrayList<Double>();
 		for(int i=0;i<outputSignal.size();i++){
-			output.add(outputSignal.get(i).outputValue());
+			output.add(excitation(outputSignal.get(i).outputValue()));
 		}
 		return output;
+	}
+	
+	public double excitation(double input){
+		double buff=Math.pow(Math.E, (input*-1))+1;
+		return 1/buff;
 	}
 	
 	public void addInputSignal(ArrayList<Synapse> list){
