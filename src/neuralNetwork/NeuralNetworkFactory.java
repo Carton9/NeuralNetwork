@@ -16,7 +16,7 @@ public class NeuralNetworkFactory {
 		this.outputN=outputN;
 		inputWeight=new ArrayList<ArrayList<Double>>();
 		hideWeight=new ArrayList<ArrayList<ArrayList<Double>>>();
-		mutationRate=2;
+		mutationRate=20;
 		
 		ArrayList<Double> oneWeight=new ArrayList<Double>();
 		for(int j=0;j<hideN;j++){
@@ -139,7 +139,7 @@ public class NeuralNetworkFactory {
 	}
 	
 	public double mutation(double parent){
-		double newWeight=parent+(double)(mutationSource.nextInt(mutationRate*2)-mutationRate)/10;
+		double newWeight=parent+(double)(mutationSource.nextInt(mutationRate*2)-mutationRate);
 		if(newWeight>mutationMax)return mutationMax;
 		else if(newWeight<-mutationMax)return -mutationMax;
 		return newWeight;
