@@ -67,14 +67,14 @@ public class Neuron {
 		if(active){
 			ArrayList<Double> newInputWeight=new ArrayList<Double>();
 			for(int i=0;i<inputWeight.size();i++){
-				newInputWeight.add(inputWeight.get(i)+loss);
+				newInputWeight.add(inputWeight.get(i)-loss);
 			}
 			inputWeight=newInputWeight;
 		}
 		else{
 			ArrayList<Double> newInputWeight=new ArrayList<Double>();
 			for(int i=0;i<inputWeight.size();i++){
-				newInputWeight.add(inputWeight.get(i)-loss);
+				newInputWeight.add(inputWeight.get(i)+loss);
 			}
 			inputWeight=newInputWeight;
 		}
