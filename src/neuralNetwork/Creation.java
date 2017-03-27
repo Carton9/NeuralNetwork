@@ -27,7 +27,7 @@ public class Creation {
 			//System.out.println(output);
 			int answer=(targetValue.get(i)==1)?0:1;
 			//System.out.println(answer+"  "+targetValue.get(i));
-			double loss=(output.get(targetValue.get(i))-output.get(answer))*100;
+			double loss=1-output.get(targetValue.get(i));
 			lossList.add(loss);
 			System.out.println(loss);
 			brain.updataLoss(loss);
