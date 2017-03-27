@@ -24,7 +24,7 @@ public class MainTest {
 				example.add(left);
 				example.add(right);
 				int answer=(left>right)?0:1;
-				System.out.println(answer);
+				//System.out.println(answer);
 				inputdata.add(example);
 				targetValue.add(answer);
 			}

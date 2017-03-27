@@ -40,10 +40,12 @@ public class Creation {
 			brain.action(inputdata.get(0));
 			inputdata.remove(0);
 			ArrayList<Double> output=brain.output();
-			System.out.println(output);
-			double loss=output.get(targetValue.get(i));
+			//System.out.println(output);
+			int answer=(targetValue.get(i)==1)?0:1;
+			System.out.println(answer+"  "+targetValue.get(i));
+			double loss=(output.get(targetValue.get(i))-output.get(answer))*10;
 			lossList.add(loss);
-			//System.out.println(loss);
+			System.out.println(loss);
 			brain.updataLoss(loss);
 		}
 		return lossList;
