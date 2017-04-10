@@ -16,7 +16,7 @@ public class Neuron {
 		Random biasGenerator=new Random();
 		int buff=0;
 		while(buff==0){
-			buff=biasGenerator.nextInt(6)-3;
+			buff=biasGenerator.nextInt(10)-5;
 		}
 		bias=buff;
 	}

@@ -6,15 +6,9 @@ public class Creation {
 	public boolean isAlive=false;
 	NeuralNetwork brain;
 	NeuralNetworkFactory reproduction;
-	public Creation(int input,int hiddenX,int hiddenY,int output){
-		reproduction=new NeuralNetworkFactory(input,hiddenX,hiddenY,output);
+	public Creation(int input,int hideX,int hideY,int output){
+		reproduction=new NeuralNetworkFactory(input,hideX,hideY,output);
 		brain=reproduction.init();
-		isAlive=true;
-	}
-	public Creation(NeuralNetworkFactory reproduction,double size,Point location,Color c){
-		brain=reproduction.init();
-		Random random=new Random();
-		this.reproduction=reproduction;
 		isAlive=true;
 	}
 	public ArrayList<Double> tarining(ArrayList<ArrayList<Double>> inputdata,ArrayList<Integer>targetValue){
@@ -25,19 +19,16 @@ public class Creation {
 			inputdata.remove(0);
 			ArrayList<Double> output=brain.output();
 			//System.out.println(output);
-			int answer=(targetValue.get(i)==1)?0:1;
-			//System.out.println(answer+"  "+targetValue.get(i));
-			double loss=(output.get(targetValue.get(i))-output.get(answer))*100;
+			/*outputs[j] * (1 - outputs[j]) * (targets[j] - outputs[j])
+			for (int j = 0; j < outputs.length; j++)   {
+				outputError[j] =outputs[j] * (1 - outputs[j]) * (targets[j] - outputs[j]);
+				}*/
+			double loss=1-output.get(targetValue.get(i));
 			lossList.add(loss);
 			System.out.println(loss);
 			brain.updataLoss(loss);
 		}
 		return lossList;
-	}
-	public Creation reproduction(){
-		Random random=new Random();
-		Creation child=new Creation(reproduction.reproduction(),20,new Point(random.nextInt(1800)+40,random.nextInt(1000)+40), null);
-		return child;
 	}
 	public double excitation(double input){
 		double buff=Math.pow(Math.E, input)+1;
